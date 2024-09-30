@@ -81,6 +81,7 @@ import { Key } from "../../../Keyboard";
 import { useTransition } from "../../../hooks/useTransition";
 import { useIsVideoRoom } from "../../../utils/video-rooms";
 import { usePinnedEvents } from "../../../hooks/usePinnedEvents";
+import RoomSummaryQuickStats from "./RoomSummaryQuickStats";
 
 interface IProps {
     room: Room;
@@ -385,6 +386,9 @@ const RoomSummaryCard: React.FC<IProps> = ({
                     disabled={!canInviteToState}
                     onSelect={() => inviteToRoom(room)}
                 />
+                <div>
+                <RoomSummaryQuickStats room={room} />
+                </div>
 
                 <Separator />
 

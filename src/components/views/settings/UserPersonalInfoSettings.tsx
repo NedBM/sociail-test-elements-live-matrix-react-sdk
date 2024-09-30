@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+
 import React, { useCallback, useEffect, useState } from "react";
 import { ThreepidMedium } from "matrix-js-sdk/src/matrix";
 import { Alert } from "@vector-im/compound-web";
@@ -26,6 +27,7 @@ import { ThirdPartyIdentifier } from "../../../AddThreepid";
 import SettingsStore from "../../../settings/SettingsStore";
 import { UIFeature } from "../../../settings/UIFeature";
 import { AddRemoveThreepids } from "./AddRemoveThreepids";
+import AddRemoveSkills from "./AddRemoveSkills"; 
 
 type LoadingState = "loading" | "loaded" | "error";
 
@@ -54,7 +56,7 @@ interface UserPersonalInfoSettingsProps {
 }
 
 /**
- * Settings controls allowing the user to set personal information like email addresses.
+ * Settings controls allowing the user to set personal information like email addresses and skills.
  */
 export const UserPersonalInfoSettings: React.FC<UserPersonalInfoSettingsProps> = ({ canMake3pidChanges }) => {
     const [emails, setEmails] = useState<ThirdPartyIdentifier[] | undefined>();
@@ -129,6 +131,16 @@ export const UserPersonalInfoSettings: React.FC<UserPersonalInfoSettingsProps> =
                         isLoading={loadingState === "loading"}
                     />
                 </ThreepidSectionWrapper>
+            </SettingsSubsection>
+
+            <SettingsSubsection
+            style={{marginTop: '4'}}
+                // heading="settings|general|skills_heading"
+                heading="Skill Settings"
+                stretchContent
+                data-testid="mx_AccountSkills"
+            >
+                <AddRemoveSkills disabled={!canMake3pidChanges} />
             </SettingsSubsection>
         </div>
     );
